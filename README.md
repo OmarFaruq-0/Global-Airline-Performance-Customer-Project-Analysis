@@ -1,12 +1,6 @@
-# Global-Airline-Performance-Customer-Project-Analysis
+# Global Airlines Performance & Customer Behaviour Analysis #
 ```sql
-
-
-
-
-
-
-DROP TABLE IF EXISTS airlines;
+**DROP TABLE IF EXISTS airlines;
 CREATE TABLE airlines 
 			(
 			airline_code Varchar (6) PRIMARY KEY,
@@ -31,17 +25,8 @@ CREATE TABLE booking_status
 			(
 			booking_id INT PRIMARY KEY,
 			passenger_id INT, 
-			passenger_name VARCHAR (30),
-			gender VARCHAR (10),
-			nationality VARCHAR(15),
 			frequent_flyer_no VARCHAR(20), 
 			flight_instance_id INT,
-			flight_number VARCHAR(15), 
-			airline_code VARCHAR(15), 
-			origin VARCHAR(10), 
-			destination VARCHAR(10), 
-			departure_scheduled TIMESTAMP, 
-			arrival_scheduled TIMESTAMP, 
 			booking_date TIMESTAMP, 
 			travel_date DATE, 
 			seat_class VARCHAR(12), 
@@ -67,18 +52,8 @@ DROP TABLE IF EXISTS flight_instances;
 CREATE TABLE flight_instances (
                               flight_instance_id INT Primary KEY, 
 							  flight_id INT, 
-							  flight_number VARCHAR(15) , 
-							  airline_code VARCHAR(15), 
-							  origin VARCHAR(13), 
-							  destination VARCHAR(13), 
 							  departure_scheduled TIMESTAMP, 
-							  arrival_scheduled TIMESTAMP, 
-							  aircraft_type VARCHAR(15), 
-							  distance_km INT, 
-							  capacity INT, 
-							  base_fare_economy INT, 
-							  base_fare_business INT, 
-							  base_fare_first INT
+							  arrival_scheduled TIMESTAMP
 							  );
 
 DROP TABLE IF EXISTS flight_masters;
@@ -121,22 +96,11 @@ FOREIGN KEY (passenger_id)
 REFERENCES passengers(passenger_id);
 
 
-ALTER TABLE booking_status
-ADD CONSTRAINT fk_airlines
-FOREIGN KEY (airline_code)
-REFERENCES airlines(airline_code);
-
 
 ALTER TABLE booking_status
 ADD CONSTRAINT fk_flight_instances
 FOREIGN KEY (flight_instance_id)
 REFERENCES flight_instances(flight_instance_id);
-
-
-ALTER TABLE booking_status
-ADD CONSTRAINT fk_airports
-FOREIGN KEY (origin)
-REFERENCES airports(iata);
 
 
 ALTER TABLE flight_instances
@@ -822,9 +786,5 @@ status_count;
 SELECT * FROM airline_revenue_summary;
 SELECT * FROM route_performance_Summary;
 SELECT * FROM customer_behavior;
-
-
-
+**
 ```
-SELECT * FROM booking_efficiency;
-
